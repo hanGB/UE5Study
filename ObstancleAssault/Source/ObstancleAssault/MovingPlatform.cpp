@@ -2,7 +2,6 @@
 
 
 #include "MovingPlatform.h"
-#include <iostream>
 
 // Sets default values
 AMovingPlatform::AMovingPlatform()
@@ -16,8 +15,6 @@ AMovingPlatform::AMovingPlatform()
 void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
-	std::cout << "dat" << std::endl;
-
 }
 
 // Called every frame
