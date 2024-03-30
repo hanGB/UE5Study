@@ -22,8 +22,15 @@ void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	MyVector.Y += 1;
-
-	SetActorLocation(MyVector);
+	// 플랫폼 앞으로 이동
+		// 현재 위치 얻기
+	FVector CurrentLocation = GetActorLocation();
+		// 벡터를 그 위치에 더함
+	CurrentLocation.X += 1;
+		// 그 위치를 설정
+	SetActorLocation(CurrentLocation);
+	// 플랫폼이 너무 멀리가면 돌아오도록 설정
+		// 얼마나 이동했는지 확인
+		// 너무 멀리 갔다면 움직임 방향 반대로 변경
 }
 
