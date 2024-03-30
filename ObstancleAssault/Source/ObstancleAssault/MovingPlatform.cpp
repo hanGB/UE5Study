@@ -26,7 +26,7 @@ void AMovingPlatform::Tick(float DeltaTime)
 		// 현재 위치 얻기
 	FVector CurrentLocation = GetActorLocation();
 		// 벡터를 그 위치에 더함
-	CurrentLocation.X += 1;
+	CurrentLocation = CurrentLocation + PlatformVelocity * DeltaTime;
 		// 그 위치를 설정
 	SetActorLocation(CurrentLocation);
 	// 플랫폼이 너무 멀리가면 돌아오도록 설정
