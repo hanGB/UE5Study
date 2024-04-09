@@ -29,7 +29,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Moving Platform")
 	float MoveDistance = 100;
 
-	FVector StartLoction;
+	FVector StartLocation;
 
 	
 
