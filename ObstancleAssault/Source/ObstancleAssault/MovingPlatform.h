@@ -31,10 +31,12 @@ private:
 	bool ShouldPlatformReturn() const;
 	float GetDistanceMoved() const;
 
-	UPROPERTY(EditAnywhere, Category = "Moving Platform")
+	UPROPERTY(EditAnywhere, Category = "Moving")
 	FVector PlatformVelocity = FVector(100, 0, 0);
-	UPROPERTY(EditAnywhere, Category = "Moving Platform")
+	UPROPERTY(EditAnywhere, Category = "Moving")
 	float MoveDistance = 100;
+	UPROPERTY(EditAnywhere, Category = "Rotation")
+	FRotator RotationVelocity;
 
 	FVector StartLocation;
 };
