@@ -1,0 +1,11 @@
+Project Template - "First Person"
+Content\__ExternalActors__
+Content\__ExternalObjects__
+Content\FirstPerson
+Content\FirstPersonArms
+Content\FPWeapon
+Content\LevelPrototyping
+
+
+"Medieval Dungeon" 
+https://www.unrealengine.com/marketplace/en-US/product/a5b6a73fea5340bda9b8ac33d877c9e2

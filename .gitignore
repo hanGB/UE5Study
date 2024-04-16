@@ -75,3 +75,14 @@
 
 # StarterContent 
 **/Content/StarterContent/*
+
+# TemplateContent
+**/Content/__ExternalActors__/*
+**/Content/__ExternalObjects__/*
+**/Content/FirstPerson/*
+**/Content/FirstPersonArms/*
+**/Content/FPWeapon/*
+**/Content/LevelPrototyping/*
+
+# DownloadContent
+**/Content/MedievalDungeon/*
