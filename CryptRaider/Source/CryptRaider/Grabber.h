@@ -33,6 +33,8 @@ public:
 
 private:
 	UPhysicsHandleComponent* GetPhyiscsHandle() const;
+	
+	bool GetGrabbaleInReach(FHitResult& OutHitResult) const;
 
 	UPROPERTY(EditAnywhere);
 	float MaxGrabDistance = 400;
