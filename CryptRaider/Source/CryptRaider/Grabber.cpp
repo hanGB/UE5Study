@@ -4,6 +4,7 @@
 #include "Grabber.h"
 #include "Engine/World.h"
 #include "DrawDebugHelpers.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 
 // Sets default values for this component's properties
 UGrabber::UGrabber()
@@ -19,10 +20,7 @@ UGrabber::UGrabber()
 // Called when the game starts
 void UGrabber::BeginPlay()
 {
-	Super::BeginPlay();
-
-	// ...
-	
+	Super::BeginPlay();	
 }
 
 
@@ -37,6 +35,7 @@ void UGrabber::Grab()
 	FVector Start = GetComponentLocation();
 	FVector End = Start + GetForwardVector() * MaxGrabDistance;
 	DrawDebugLine(GetWorld(), Start, End, FColor::Red);
+	DrawDebugSphere(GetWorld(), End, 10.f, 10, FColor::Blue, false, 5.f);
 
 	// Sweep
 	FCollisionShape Shpere = FCollisionShape::MakeSphere(GrabRadius);
@@ -52,6 +51,8 @@ void UGrabber::Grab()
 	{
 		AActor* HitActor = HitResult.GetActor();
 		UE_LOG(LogTemp, Display, TEXT("Hit actor: %s"), *HitActor->GetActorNameOrLabel());
+		DrawDebugSphere(GetWorld(), HitResult.Location, 10.f, 10, FColor::Green, false, 5.f);
+		DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 10.f, 10, FColor::Yellow, false, 5.f);
 	}
 	else
 	{
