@@ -24,6 +24,9 @@ void UTriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	
 	for (auto Actor : Actors)
 	{
-		UE_LOG(LogTemp, Display, TEXT("Overlapping: %s"), *Actor->GetActorNameOrLabel());
+		if (Actor->ActorHasTag(AcceptableActorTag))
+		{
+			UE_LOG(LogTemp, Display, TEXT("Unlocking"));
+		}		
 	}
 }
