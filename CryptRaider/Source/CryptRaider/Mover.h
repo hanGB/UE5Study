@@ -33,7 +33,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	float MoveTime = 4.f;
 
-	UPROPERTY(EditAnywhere)
 	bool ShouldMove = false;
 
 	FVector OriginalLocation;

@@ -51,9 +51,13 @@ void UGrabber::Grab()
 	{
 		// Wake up the component to use physics in case it is sleeping
 		UPrimitiveComponent* HitComponent = HitResult.GetComponent();
+		HitComponent->SetSimulatePhysics(true);
 		HitComponent->WakeAllRigidBodies();
+		AActor* HitActor = HitResult.GetActor();
+		// Detach from trigger component
+		HitActor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 		// Add tag to indicate that the actor has been grabbed
-		HitResult.GetActor()->Tags.Add("Grabbed");
+		HitActor->Tags.Add("Grabbed");
 
 		PhysicsHandle->GrabComponentAtLocationWithRotation(
 			HitComponent,
@@ -91,8 +95,9 @@ bool UGrabber::GetGrabbaleInReach(FHitResult& OutHitResult) const
 {
 	FVector Start = GetComponentLocation();
 	FVector End = Start + GetForwardVector() * MaxGrabDistance;
-	DrawDebugLine(GetWorld(), Start, End, FColor::Red);
-	DrawDebugSphere(GetWorld(), End, 10.f, 10, FColor::Blue, false, 5.f);
+	// Debug
+	//DrawDebugLine(GetWorld(), Start, End, FColor::Red);
+	//DrawDebugSphere(GetWorld(), End, 10.f, 10, FColor::Blue, false, 5.f);
 
 	// Sweep
 	FCollisionShape Shpere = FCollisionShape::MakeSphere(GrabRadius);
