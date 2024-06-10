@@ -18,15 +18,26 @@ void UTriggerComponent::BeginPlay()
 void UTriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	
+	if (!Mover) 
+	{
+		UE_LOG(LogTemp, Error, TEXT("TriggerComponent's Mover is not Setting!"));
+		return;
+	}
 
 	if (GetAcceptableActor())
 	{
-		UE_LOG(LogTemp, Display, TEXT("Unlocking"));
+		Mover->SetShouldMove(true);
 	}
 	else
 	{
-		UE_LOG(LogTemp, Display, TEXT("Relocking"));
+		Mover->SetShouldMove(false);
 	}
+}
+
+void UTriggerComponent::SetMover(UMover* NewMover)
+{
+	Mover = NewMover;
 }
 
 AActor* UTriggerComponent::GetAcceptableActor() const
