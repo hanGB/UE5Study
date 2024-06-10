@@ -27,6 +27,8 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
+	AActor* GetAcceptableActor() const;
+
 	UPROPERTY(EditAnywhere)
 	FName AcceptableActorTag;
 
