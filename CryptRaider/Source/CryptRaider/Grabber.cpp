@@ -29,12 +29,8 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	UPhysicsHandleComponent* PhysicsHandle = GetPhyiscsHandle();
-	if (!PhysicsHandle)
-	{
-		return;
-	}
 
-	if (PhysicsHandle->GetGrabbedComponent())
+	if (PhysicsHandle && PhysicsHandle->GetGrabbedComponent())
 	{
 		FVector TargetLocation = GetComponentLocation() + GetForwardVector() * HoldDistance;
 		PhysicsHandle->SetTargetLocationAndRotation(TargetLocation, GetComponentRotation());
@@ -56,6 +52,8 @@ void UGrabber::Grab()
 		// Wake up the component to use physics in case it is sleeping
 		UPrimitiveComponent* HitComponent = HitResult.GetComponent();
 		HitComponent->WakeAllRigidBodies();
+		// Add tag to indicate that the actor has been grabbed
+		HitResult.GetActor()->Tags.Add("Grabbed");
 
 		PhysicsHandle->GrabComponentAtLocationWithRotation(
 			HitComponent,
@@ -69,16 +67,12 @@ void UGrabber::Grab()
 void UGrabber::Release()
 {
 	UPhysicsHandleComponent* PhysicsHandle = GetPhyiscsHandle();
-	if (!PhysicsHandle)
-	{
-		return;
-	}
 
-	UPrimitiveComponent* GrabbedComponent = PhysicsHandle->GetGrabbedComponent();
-	if (GrabbedComponent)
+	if (PhysicsHandle && PhysicsHandle->GetGrabbedComponent())
 	{
-		// Wake up the component to use physics in case it is sleeping
-		GrabbedComponent->WakeAllRigidBodies();
+		// Remove tag
+		AActor* GrabbedActor = PhysicsHandle->GetGrabbedComponent()->GetOwner();
+		GrabbedActor->Tags.Remove("Grabbed");
 		PhysicsHandle->ReleaseComponent();
 	}	
 }
