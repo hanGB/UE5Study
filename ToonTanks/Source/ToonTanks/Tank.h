@@ -22,6 +22,7 @@ public:
 
 private:
 	void Move(float Value);
+	void Turn(float Value);
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	class USpringArmComponent* SpringArm;
@@ -29,4 +30,6 @@ private:
 	class UCameraComponent* Camera;
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float Speed = 300.0f;
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float TurnRate = 90.0f;
 };
