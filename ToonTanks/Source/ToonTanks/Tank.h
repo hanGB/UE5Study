@@ -39,6 +39,8 @@ private:
 	float Speed = 300.0f;
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float TurnRate = 90.0f;
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float TurretRotationSpeed = 5.0f;
 
 	APlayerController* PlayerContorllerRef;
 };
