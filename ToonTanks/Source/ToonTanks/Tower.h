@@ -21,8 +21,15 @@ protected:
 	virtual void BeginPlay() override;
 	
 private:
+	void CheckFireCondition();
+
+	bool IsTankInFireRange() const;
+
 	class ATank* Tank;
 
 	UPROPERTY(EditAnywhere, Category = "Combet")
 	float FireRange = 1000.0f;
+
+	FTimerHandle FireRateTimeHandle;
+	float FireRate = 2.f;
 };

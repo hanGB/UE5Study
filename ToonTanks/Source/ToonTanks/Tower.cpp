@@ -4,18 +4,15 @@
 #include "Tower.h"
 #include "Tank.h"
 #include "Kismet/GameplayStatics.h"
+#include "TimerManager.h"
 
 void ATower::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (Tank)
+	if (IsTankInFireRange())
 	{
-		float Distance = FVector::Dist(GetActorLocation(), Tank->GetActorLocation());
-		if (Distance <= FireRange)
-		{
-			RotateTurret(Tank->GetActorLocation());
-		}
+		RotateTurret(Tank->GetActorLocation());
 	}
 }
 
@@ -24,4 +21,27 @@ void ATower::BeginPlay()
 	Super::BeginPlay();
 
 	Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
+
+	GetWorldTimerManager().SetTimer(FireRateTimeHandle, this, &ATower::CheckFireCondition, FireRate, true);
+}
+
+void ATower::CheckFireCondition()
+{
+	if (IsTankInFireRange())
+	{
+			Fire();
+	}
+}
+
+bool ATower::IsTankInFireRange() const
+{
+	if (Tank)
+	{
+		float Distance = FVector::Dist(GetActorLocation(), Tank->GetActorLocation());
+		if (Distance > FireRange)
+		{
+			return true;
+		}
+	}
+	return false;
 }
