@@ -23,7 +23,7 @@ ABasePawn::ABasePawn()
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
-void ABasePawn::RotateTurret(FVector LookAtTarget, float RotationSpeed)
+void ABasePawn::RotateTurret(FVector LookAtTarget)
 {
 	FVector ToTarget = LookAtTarget - TurretMesh->GetComponentLocation();
 	FRotator LookAtRotation = FRotator(0.0f, ToTarget.Rotation().Yaw, 0.0f);
@@ -33,6 +33,6 @@ void ABasePawn::RotateTurret(FVector LookAtTarget, float RotationSpeed)
 			TurretMesh->GetComponentRotation(), 
 			LookAtRotation, 
 			UGameplayStatics::GetWorldDeltaSeconds(this), 
-			RotationSpeed)
+			TurretRotationSpeed)
 	);
 }

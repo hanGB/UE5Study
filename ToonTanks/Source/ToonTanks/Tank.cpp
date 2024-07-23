@@ -44,7 +44,7 @@ void ATank::Tick(float DeltaTime)
 		//	12,
 		//	FColor::Red);
 
-		RotateTurret(HitResult.ImpactPoint, TurretRotationSpeed);
+		RotateTurret(HitResult.ImpactPoint);
 	}
 }
 

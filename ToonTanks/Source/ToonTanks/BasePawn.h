@@ -16,7 +16,7 @@ public:
 	ABasePawn();
 
 protected:
-	void RotateTurret(FVector LookAtTarget, float RotationSpeed);
+	void RotateTurret(FVector LookAtTarget);
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -27,4 +27,7 @@ private:
 	UStaticMeshComponent* TurretMesh;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float TurretRotationSpeed = 5.0f;
 };
