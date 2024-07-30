@@ -31,4 +31,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float TurretRotationSpeed = 5.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combet")
+	TSubclassOf<class AProjectile> ProjectileClass;
 };
