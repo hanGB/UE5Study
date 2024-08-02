@@ -34,4 +34,10 @@ private:
 	
 	UPROPERTY(EditAnywhere, Category = "Combet")
 	float Damage = 50.0f;
+
+	UPROPERTY(EditAnywhere, Category = "Combet")
+	UParticleSystem* HitParticle;
+
+	UPROPERTY(VisibleAnywhere, Category = "Combet")
+	class UParticleSystemComponent* TrailParticle;
 };

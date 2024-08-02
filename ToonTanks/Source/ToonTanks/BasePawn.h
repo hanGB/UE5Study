@@ -36,4 +36,7 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combet")
 	TSubclassOf<class AProjectile> ProjectileClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combet")
+	UParticleSystem* DeathParticle;
 };
