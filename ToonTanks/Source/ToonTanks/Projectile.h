@@ -40,4 +40,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Combet")
 	class UParticleSystemComponent* TrailParticle;
+
+	UPROPERTY(EditAnywhere, Category = "Combet")
+	USoundBase* LaunchSound;
+
+	UPROPERTY(EditAnywhere, Category = "Combet")
+	USoundBase* HitSound;
 };

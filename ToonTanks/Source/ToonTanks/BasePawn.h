@@ -39,4 +39,7 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combet")
 	UParticleSystem* DeathParticle;
+
+	UPROPERTY(EditAnywhere, Category = "Combet")
+	USoundBase* DeathSound;
 };
