@@ -19,6 +19,7 @@ public:
 
 protected:
 	void RotateTurret(FVector LookAtTarget);
+	void RotateTurretVertical(float Value);
 	void Fire();
 
 private:
@@ -33,6 +34,10 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float TurretRotationSpeed = 5.0f;
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float TurretVerticalRotationSpeed = 5.0f;
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float MaximumTurretVerticalRotation = 15.0f;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combet")
 	TSubclassOf<class AProjectile> ProjectileClass;

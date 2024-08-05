@@ -43,7 +43,9 @@ void ABasePawn::HandleDestruction()
 void ABasePawn::RotateTurret(FVector LookAtTarget)
 {
 	FVector ToTarget = LookAtTarget - TurretMesh->GetComponentLocation();
-	FRotator LookAtRotation = FRotator(0.0f, ToTarget.Rotation().Yaw, 0.0f);
+
+	FRotator PrevRotation = TurretMesh->GetComponentRotation();
+	FRotator LookAtRotation = FRotator(PrevRotation.Pitch, ToTarget.Rotation().Yaw, 0.0f);
 
 	TurretMesh->SetWorldRotation(
 		FMath::RInterpTo(
@@ -52,6 +54,16 @@ void ABasePawn::RotateTurret(FVector LookAtTarget)
 			UGameplayStatics::GetWorldDeltaSeconds(this), 
 			TurretRotationSpeed)
 	);
+}
+
+void ABasePawn::RotateTurretVertical(float Value)
+{
+	FRotator TurretRotation = TurretMesh->GetComponentRotation();
+
+	float Pitch = TurretRotation.Pitch + Value * TurretVerticalRotationSpeed * UGameplayStatics::GetWorldDeltaSeconds(this);
+	TurretRotation.Pitch = FMath::Clamp(Pitch, 0.0f, MaximumTurretVerticalRotation);
+
+	TurretMesh->SetWorldRotation(TurretRotation);
 }
 
 void ABasePawn::Fire()

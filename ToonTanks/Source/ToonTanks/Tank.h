@@ -36,6 +36,7 @@ private:
 	void Move(float Value);
 	void Turn(float Value);
 
+
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	class USpringArmComponent* SpringArm;
 	UPROPERTY(VisibleAnywhere, Category = "Components")

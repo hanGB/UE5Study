@@ -22,6 +22,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
+	PlayerInputComponent->BindAxis(TEXT("RotateTurretVertical"), this, &ATank::RotateTurretVertical);
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
 }
 
@@ -80,3 +81,4 @@ void ATank::Turn(float Value)
 
 	AddActorLocalRotation(DeltaRotator, true);
 }
+
