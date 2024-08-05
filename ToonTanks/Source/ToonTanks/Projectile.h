@@ -46,4 +46,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Combet")
 	USoundBase* HitSound;
+
+	UPROPERTY(EditAnywhere, Category = "Combet")
+	TSubclassOf<UCameraShakeBase> HitCameraShakeClass;
 };

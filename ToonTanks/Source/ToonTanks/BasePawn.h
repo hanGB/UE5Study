@@ -42,4 +42,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Combet")
 	USoundBase* DeathSound;
+
+	UPROPERTY(EditAnywhere, Category = "Combet")
+	TSubclassOf<UCameraShakeBase> DeathCameraShakeClass;
 };
