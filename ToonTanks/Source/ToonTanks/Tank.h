@@ -26,6 +26,7 @@ public:
 	virtual void HandleDestruction() override;
 
 	APlayerController* GetTankPlayerController() const { return TankPlayerContorller; }
+	bool GetAlive() const { return bAlive; }
 
 protected:
 	// Called when the game starts or when spawned
@@ -45,4 +46,6 @@ private:
 	float TurnRate = 90.0f;
 
 	APlayerController* TankPlayerContorller;
+
+	bool bAlive = true;
 };
