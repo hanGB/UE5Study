@@ -75,3 +75,6 @@
 
 # StarterContent 
 **/Content/StarterContent/*
+
+# DownloadContent
+**/Content/AssetPacks/*
