@@ -4,7 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "InputActionValue.h"
 #include "ShooterCharacter.generated.h"
+
+class UInputMappingContext;
+class UInputAction;
 
 UCLASS()
 class SIMPLESHOOTER_API AShooterCharacter : public ACharacter
@@ -26,4 +30,24 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+private:
+	void MoveForward(const FInputActionValue& Value);
+	void MoveRight(const FInputActionValue& Value);
+	void LookUp(const FInputActionValue& Value);
+	void LookRight(const FInputActionValue& Value);
+
+	// Inputs
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputMappingContext* ShooterMappingContext;
+
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* MoveForwardAction;
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* MoveRightAction;
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* LookUpAction;
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* LookRightAction;
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* JumpAction;
 };
