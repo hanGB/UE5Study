@@ -47,6 +47,8 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 		EnhancedInputComponent->BindAction(MoveRightAction, ETriggerEvent::Triggered, this, &AShooterCharacter::MoveRight);
 		EnhancedInputComponent->BindAction(LookUpAction, ETriggerEvent::Triggered, this, &AShooterCharacter::LookUp);
 		EnhancedInputComponent->BindAction(LookRightAction, ETriggerEvent::Triggered, this, &AShooterCharacter::LookRight);
+		EnhancedInputComponent->BindAction(LookUpRateAction, ETriggerEvent::Triggered, this, &AShooterCharacter::LookUpRate);
+		EnhancedInputComponent->BindAction(LookRightRateAction, ETriggerEvent::Triggered, this, &AShooterCharacter::LookRightRate);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ACharacter::Jump);
 	}
 }
@@ -69,4 +71,14 @@ void AShooterCharacter::LookUp(const FInputActionValue& Value)
 void AShooterCharacter::LookRight(const FInputActionValue& Value)
 {
 	AddControllerYawInput(Value.Get<float>());
+}
+
+void AShooterCharacter::LookUpRate(const FInputActionValue& Value)
+{
+	AddControllerPitchInput(Value.Get<float>() * RotationRate * GetWorld()->GetDeltaSeconds());
+}
+
+void AShooterCharacter::LookRightRate(const FInputActionValue& Value)
+{
+	AddControllerYawInput(Value.Get<float>() * RotationRate * GetWorld()->GetDeltaSeconds());
 }
