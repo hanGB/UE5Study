@@ -9,6 +9,7 @@
 
 class UInputMappingContext;
 class UInputAction;
+class AGun;
 
 UCLASS()
 class SIMPLESHOOTER_API AShooterCharacter : public ACharacter
@@ -59,4 +60,10 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Input")
 	float RotationRate = 10.0f;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AGun> GunClass;
+
+	UPROPERTY()
+	AGun* Gun;
 };
