@@ -38,6 +38,7 @@ private:
 	void LookRight(const FInputActionValue& Value);
 	void LookUpRate(const FInputActionValue& Value);
 	void LookRightRate(const FInputActionValue& Value);
+	void Shoot();
 
 	// Inputs
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -57,6 +58,8 @@ private:
 	UInputAction* LookRightRateAction;
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* JumpAction;
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* ShootAction;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
 	float RotationRate = 10.0f;
