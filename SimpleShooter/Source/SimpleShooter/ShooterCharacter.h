@@ -33,6 +33,9 @@ public:
 
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
+	UFUNCTION(BlueprintPure)
+	bool IsDead() const;
+
 private:
 	void MoveForward(const FInputActionValue& Value);
 	void MoveRight(const FInputActionValue& Value);
@@ -69,7 +72,7 @@ private:
 	float MaxHealth = 100.0f;
 	
 	UPROPERTY(VisibleAnywhere)
-	float Health;
+	float Health = 100.0f;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;
