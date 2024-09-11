@@ -36,6 +36,8 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
 
+	void Shoot();
+
 private:
 	void MoveForward(const FInputActionValue& Value);
 	void MoveRight(const FInputActionValue& Value);
@@ -43,7 +45,6 @@ private:
 	void LookRight(const FInputActionValue& Value);
 	void LookUpRate(const FInputActionValue& Value);
 	void LookRightRate(const FInputActionValue& Value);
-	void Shoot();
 
 	// Inputs
 	UPROPERTY(EditAnywhere, Category = "Input")
