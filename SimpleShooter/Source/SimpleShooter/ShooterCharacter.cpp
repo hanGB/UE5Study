@@ -92,6 +92,11 @@ bool AShooterCharacter::IsDead() const
 	return Health <= 0.0f;
 }
 
+float AShooterCharacter::GetHealthPercent() const
+{
+	return Health / MaxHealth;
+}
+
 void AShooterCharacter::MoveForward(const FInputActionValue& Value)
 {
 	AddMovementInput(GetActorForwardVector() * Value.Get<float>());
