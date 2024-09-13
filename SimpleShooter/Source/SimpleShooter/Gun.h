@@ -26,6 +26,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
+	bool GunTrace(FHitResult& Hit, FVector& ShotDirection);
+	AController* GetOwnerControlller() const;
+
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* Root;
 
@@ -35,7 +38,11 @@ private:
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* MuzzleFlash;
 	UPROPERTY(EditAnywhere)
+	USoundBase* MuzzleSound;
+	UPROPERTY(EditAnywhere)
 	UParticleSystem* ImpactEffect;
+	UPROPERTY(EditAnywhere)
+	USoundBase* ImpactSound;
 
 	UPROPERTY(EditAnywhere)
 	float MaxRange = 1000;
