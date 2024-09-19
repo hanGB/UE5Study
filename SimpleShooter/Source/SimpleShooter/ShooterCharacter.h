@@ -48,6 +48,8 @@ public:
 	void Shoot();
 	void Reload();
 
+	bool AddAmmo(int Ammo);
+
 private:
 	void MoveForward(const FInputActionValue& Value);
 	void MoveRight(const FInputActionValue& Value);

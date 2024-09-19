@@ -150,3 +150,18 @@ void AShooterCharacter::Reload()
 {
 	Bullets = Gun->Reload(Bullets);
 }
+
+bool AShooterCharacter::AddAmmo(int Ammo)
+{
+	if (Bullets == MaxBullets)
+	{
+		return false;
+	}
+
+	Bullets += Ammo;
+	if (Bullets > MaxBullets)
+	{
+		Bullets = MaxBullets;
+	}
+	return true;
+}
