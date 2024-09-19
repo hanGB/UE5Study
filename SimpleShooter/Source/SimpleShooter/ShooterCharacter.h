@@ -39,7 +39,14 @@ public:
 	UFUNCTION(BlueprintPure)
 	float GetHealthPercent() const;
 
+	UFUNCTION(BlueprintPure)
+	int GetBulletsInBag() const;
+
+	UFUNCTION(BlueprintPure)
+	int GetBulletsInMagazine() const;
+
 	void Shoot();
+	void Reload();
 
 private:
 	void MoveForward(const FInputActionValue& Value);
@@ -69,6 +76,8 @@ private:
 	UInputAction* JumpAction;
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* ShootAction;
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* ReloadAction;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
 	float RotationRate = 10.0f;
@@ -77,6 +86,12 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	float Health = 100.0f;
+
+	UPROPERTY(EditDefaultsOnly)
+	float MaxBullets = 999;
+
+	UPROPERTY(EditAnywhere)
+	int Bullets = 100;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;

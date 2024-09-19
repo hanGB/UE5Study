@@ -62,6 +62,7 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 		EnhancedInputComponent->BindAction(LookRightRateAction, ETriggerEvent::Triggered, this, &AShooterCharacter::LookRightRate);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ACharacter::Jump);
 		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Started, this, &AShooterCharacter::Shoot);
+		EnhancedInputComponent->BindAction(ReloadAction, ETriggerEvent::Started, this, &AShooterCharacter::Reload);
 	}
 }
 
@@ -71,8 +72,6 @@ float AShooterCharacter::TakeDamage(float DamageAmount, FDamageEvent const& Dama
 
 	DamageToApply = FMath::Min(Health, DamageToApply);
 	Health -= DamageToApply;
-
-	UE_LOG(LogTemp, Display, TEXT("Health left  %f"), Health);
 
 	if (IsDead())
 	{
@@ -95,6 +94,21 @@ bool AShooterCharacter::IsDead() const
 float AShooterCharacter::GetHealthPercent() const
 {
 	return Health / MaxHealth;
+}
+
+int AShooterCharacter::GetBulletsInBag() const
+{
+	return Bullets;
+}
+
+int AShooterCharacter::GetBulletsInMagazine() const
+{
+	if (!Gun)
+	{
+		return 0;
+	}
+
+	return Gun->GetRemainedBullets();
 }
 
 void AShooterCharacter::MoveForward(const FInputActionValue& Value)
@@ -130,4 +144,9 @@ void AShooterCharacter::LookRightRate(const FInputActionValue& Value)
 void AShooterCharacter::Shoot()
 {
 	Gun->PullTrigger();
+}
+
+void AShooterCharacter::Reload()
+{
+	Bullets = Gun->Reload(Bullets);
 }

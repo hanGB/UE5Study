@@ -20,6 +20,9 @@ AGun::AGun()
 
 void AGun::PullTrigger()
 {
+	if (RemainedBullets <= 0) return;
+	RemainedBullets--;
+
 	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
 	UGameplayStatics::SpawnSoundAttached(MuzzleSound, Mesh, TEXT("MuzzleFlashSocket"));
 
@@ -39,11 +42,28 @@ void AGun::PullTrigger()
 	}
 }
 
+int AGun::Reload(int NumBulletsInBag)
+{
+	int ReloadedBullets = MagazineCapacity - RemainedBullets;
+
+	NumBulletsInBag -= ReloadedBullets;
+	if (NumBulletsInBag < 0)
+	{
+		ReloadedBullets += NumBulletsInBag;
+		NumBulletsInBag = 0;
+	}
+
+	RemainedBullets += ReloadedBullets;
+
+	return NumBulletsInBag;
+}
+
 // Called when the game starts or when spawned
 void AGun::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	RemainedBullets = MagazineCapacity;
 }
 
 // Called every frame
@@ -51,6 +71,11 @@ void AGun::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+int AGun::GetRemainedBullets() const
+{
+	return RemainedBullets;
 }
 
 bool AGun::GunTrace(FHitResult& Hit, FVector& ShotDirection)

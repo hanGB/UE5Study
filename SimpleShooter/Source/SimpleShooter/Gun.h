@@ -16,6 +16,7 @@ public:
 	AGun();
 
 	void PullTrigger();
+	int Reload(int NumBulletsInBag);
 
 protected:
 	// Called when the game starts or when spawned
@@ -24,6 +25,8 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	int GetRemainedBullets() const;
 
 private:
 	bool GunTrace(FHitResult& Hit, FVector& ShotDirection);
@@ -49,4 +52,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float Damage = 10;
+
+	UPROPERTY(EditAnywhere)
+	int MagazineCapacity = 30;
+	UPROPERTY(VisibleAnywhere)
+	int RemainedBullets = 30;
 };
