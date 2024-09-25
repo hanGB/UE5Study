@@ -1,0 +1,2 @@
+Use folder in Unreal Engine 5 Third person pack
+- Content/Characters/Mannequins
