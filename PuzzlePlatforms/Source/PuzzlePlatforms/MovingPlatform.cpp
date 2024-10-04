@@ -10,6 +10,17 @@ AMovingPlatform::AMovingPlatform()
 	SetMobility(EComponentMobility::Movable);
 }
 
+void AMovingPlatform::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (HasAuthority())
+	{
+		SetReplicates(true);
+		SetReplicateMovement(true);
+	}
+}
+
 void AMovingPlatform::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
@@ -20,10 +31,4 @@ void AMovingPlatform::Tick(float DeltaSeconds)
 		Location += FVector(Speed * DeltaSeconds, 0.0f, 0.0f);
 		SetActorLocation(Location);
 	}
-}
-
-void AMovingPlatform::BeginPlay()
-{
-	Super::BeginPlay();
-
 }
